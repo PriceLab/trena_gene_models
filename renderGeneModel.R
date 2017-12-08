@@ -1,6 +1,6 @@
 library(RPostgreSQL)
 library(TReNA)
-library(RCyjs)
+#library(RCyjs)
 library(RUnit)
 #------------------------------------------------------------------------------------------------------------------------
 genome.db.uri    <- "postgres://whovian/hg38"             # has gtf and motifsgenes tables
@@ -9,14 +9,14 @@ if(!exists("fpf"))
    fpf <- FootprintFinder(genome.db.uri, footprint.db.uri, quiet=TRUE)
 
 #------------------------------------------------------------------------------------------------------------------------
-if(!exists("mtx.rosmap")){
+#if(!exists("mtx.rosmap")){
    #load("~/s/work/priceLab/cory/module-109/rosmap_rnaseq_fpkm_geneSymbols_24593x638.RData")
-   load("~/Alzheimers/rosmap_rnaseq_fpkm_geneSymbols_24593x638.RData")  
+#   load("~/Alzheimers/rosmap_rnaseq_fpkm_geneSymbols_24593x638.RData")  
    # copy whovian file to your laptop, needed to render network into your locally running web browser
      # here is a tempoary load command for testing on whovian.  todo: this is brittle - fix!
    #load("/users/pshannon/tmp/rosmap_rnaseq_fpkm_geneSymbols_24593x638.RData")
-   mtx.rosmap <- mtx  # 24593   638
-   }
+#   mtx.rosmap <- mtx  # 24593   638
+#   }
 #------------------------------------------------------------------------------------------------------------------------
 getTSSTable <- function()
 {
@@ -171,7 +171,8 @@ createModel <- function(target.gene, promoter.shoulder,
    tbl.06.sub <- subset(tbl.06, tbl.06$gene %in% all.genes)
    tbl.07.sub <- subset(tbl.07, tbl.07$gene %in% all.genes)
    tbl.08.sub <- subset(tbl.08, tbl.08$gene %in% all.genes)
-  
+
+   browser()
    # Join it all in a table (requires plyr package)
    tbl.all <- join_all(list(tbl.01.sub, tbl.02.sub, tbl.03.sub, tbl.04.sub, tbl.05.sub, tbl.06.sub, tbl.07.sub, tbl.08.sub), by = 'gene', type = 'full')
    
